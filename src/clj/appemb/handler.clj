@@ -37,7 +37,7 @@
 (defn loading-page []
   (html5
    (head)
-   [:body {:class "body-container"}
+   [:body
     mount-target
     (include-js "/js/app.js")
     (include-js "bootstrap/js/bootstrap.min.js")]))

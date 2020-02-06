@@ -4,13 +4,14 @@
    [reagent.session :as session]
    [reitit.frontend :as reitit]
    [clerk.core :as clerk]
-   [accountant.core :as accountant]))
+   [accountant.core :as accountant]
+   [appemb.components.layout :refer [layout-component]]))
 
 ;; -------------------------
 ;; Routes
 
 (defn current-page []
-  [:div "CURRENT PAGE CONTAINER"])
+  [layout-component])
 
 ;; -------------------------
 ;; Initialize app
