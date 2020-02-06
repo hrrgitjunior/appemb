@@ -14,7 +14,9 @@
    ; [environ.core :refer [env]]
    [ring.util.response :as response]
    [ring.middleware.keyword-params :refer [wrap-keyword-params]]
-   [ring.middleware.json :as middleware]))
+   [ring.middleware.json :as middleware]
+   [ring.middleware.reload :refer [wrap-reload]]
+   [ring.middleware.defaults :refer [site-defaults wrap-defaults]]))
 
 
 (def mount-target
@@ -90,10 +92,23 @@
   ;   (route/not-found "<h1>404 Not found</h1>")))
 
 (def app
+  ; (def middleware
+  ;   [#(wrap-defaults % site-defaults)
+  ;    wrap-exceptions
+  ;    wrap-reload])
+
   (-> app-routes
-      wrap-keyword-params
-      middleware/wrap-json-params
-      middleware/wrap-json-response))
+    (wrap-defaults site-defaults)
+    wrap-reload
+    wrap-keyword-params
+    middleware/wrap-json-params
+    middleware/wrap-json-response))
+
+
+  ; (-> app-routes
+  ;     wrap-keyword-params
+  ;     middleware/wrap-json-params
+  ;     middleware/wrap-json-response))
 
 (defn -main [& [port]]
   (println "=========+++====")
