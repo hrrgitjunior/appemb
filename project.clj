@@ -4,6 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
+  ;
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [ring-server "0.5.0"]
                  [reagent "0.9.0-rc3"]
@@ -17,7 +18,11 @@
                  [metosin/reitit "0.3.10"]
                  [pez/clerk "1.0.0"]
                  [venantius/accountant "0.2.5"
-                  :exclusions [org.clojure/tools.reader]]]
+                  :exclusions [org.clojure/tools.reader]]
+                 ;
+                 [cljs-http "0.1.18"]
+                 [ring/ring-json "0.5.0"]
+                 [environ "1.1.0"]]
 
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]
@@ -62,19 +67,19 @@
               :output-dir "target/cljsbuild/public/js/out"
               :source-map true
               :optimizations :none
-              :pretty-print  true}}
+              :pretty-print  true}}}}
 
 
 
-            }
-   }
+
+
 
   :figwheel
   {:http-server-root "public"
    :server-port 3449
    :nrepl-port 7002
-   :nrepl-middleware [cider.piggieback/wrap-cljs-repl
-                      ]
+   :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
+
    :css-dirs ["resources/public/css"]
    :ring-handler appemb.handler/app}
 
@@ -88,13 +93,13 @@
                                   [prone "2019-07-08"]
                                   [figwheel-sidecar "0.5.19"]
                                   [nrepl "0.6.0"]
-                                  [pjstadig/humane-test-output "0.10.0"]
-                                  
- ]
+                                  [pjstadig/humane-test-output "0.10.0"]]
+
+
 
                    :source-paths ["env/dev/clj"]
-                   :plugins [[lein-figwheel "0.5.19"]
-]
+                   :plugins [[lein-figwheel "0.5.19"]]
+
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]
