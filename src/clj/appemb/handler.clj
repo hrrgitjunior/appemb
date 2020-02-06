@@ -29,14 +29,16 @@
    [:meta {:name "viewport"
            :content "width=device-width, initial-scale=1
            "}]
-   (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))])
+   (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))
+   (include-css (if (env :dev) "bootstrap/css/bootstrap.min.css" "bootstrap/css/bootstrap.min.css"))])
 
 (defn loading-page []
   (html5
    (head)
    [:body {:class "body-container"}
     mount-target
-    (include-js "/js/app.js")]))
+    (include-js "/js/app.js")
+    (include-js "bootstrap/js/bootstrap.min.js")]))
 
 
 (defn index-handler
