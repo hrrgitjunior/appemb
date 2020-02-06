@@ -1,0 +1,3 @@
+lein new reagent
+
+git clone https://github.com/hrrgitjunior/appemb.git
