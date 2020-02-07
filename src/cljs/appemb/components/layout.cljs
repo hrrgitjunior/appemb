@@ -4,7 +4,7 @@
             [goog.dom]
             [goog.dom]
             [cljs-http.client :as http]
-            ;[rendemb.reducer :refer [dispatch!]]
+            [appemb.reducer :refer [dispatch!]]
             [appemb.components.tabpages :refer [tab-pages-component]]))
 
 (defn layout-component []
@@ -28,11 +28,11 @@
                   {:on-click
                     (fn []
                       (go
-                       (let [res (<! (http/post "/design"))]
-                         (dispatch! {:type :layout :name
-                                     (-> js/document
-                                       (.getElementById "layouted")
-                                       (.-value))}))))}
+                       (let [res (<! (http/get "/hello"))])))}
+                         ; (dispatch! {:type :layout :name
+                         ;             (-> js/document
+                         ;               (.getElementById "layouted")
+                         ;               (.-value))}))))}
                   "Dispatch"]]]]))]
 
 

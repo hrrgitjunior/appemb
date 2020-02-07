@@ -77,19 +77,17 @@
 
   (route/resources "/")
   (GET "/hello" []
-   (response/response {:greeting "Ring Server"}))
+    (as-> "Hello world" $
+      ((fn [x] (println "===== HELLO====") x) $)
+      $))
 
   (POST "/design" req
-   (response/response
-     (let [a 10]
-      (println "=== POST DESIGN ===" req)
-      {:greeting "Ring Server"}))))
+      (as-> "Ring Server" $
+        ((fn [x] (println "===DESIGN POST===" req) x) $)
+        $))
 
-
-
-
-  ; (ANY "*" []
-  ;   (route/not-found "<h1>404 Not found</h1>")))
+  (ANY "*" []
+    (route/not-found "<h1>404 Not found</h1>")))
 
 (def app
   ; (def middleware
@@ -98,8 +96,8 @@
   ;    wrap-reload])
 
   (-> app-routes
-    (wrap-defaults site-defaults)
-    wrap-reload
+    ;(wrap-defaults site-defaults)
+    ;wrap-reload
     wrap-keyword-params
     middleware/wrap-json-params
     middleware/wrap-json-response))
@@ -109,10 +107,3 @@
   ;     wrap-keyword-params
   ;     middleware/wrap-json-params
   ;     middleware/wrap-json-response))
-
-(defn -main [& [port]]
-  (println "=========+++====")
-  (let [port (Integer. (or port (env :port) 5000))]
-    (println port)
-    (jetty/run-jetty (site #'app)
-                     {:port port :join? false})))

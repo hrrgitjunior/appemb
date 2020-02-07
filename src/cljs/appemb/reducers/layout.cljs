@@ -1,4 +1,5 @@
-(ns appdemb.reducers.layout)
+(ns appemb.reducers.layout
+  (:require [reagent.core :as r]))
 
 (defmulti Action
   (fn [state action]
