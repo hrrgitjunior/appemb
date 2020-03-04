@@ -39,15 +39,15 @@
    (head)
    [:body
     mount-target
-    (include-js "js/jquery.min.js")
-    (include-js "bootstrap/js/bootstrap.min.js")
-    ;------------------
-    (include-js "js/Three.min.js")
-    (include-js "js/3dMesh.js")
-    (include-js "js/JSONLoader.js")
-    (include-js "js/OrbitControls.js")
-    (include-js "js/OBJLoader.js")
-    (include-js "js/threedview.js")
+    ; (include-js "js/jquery.min.js")
+    ; (include-js "bootstrap/js/bootstrap.min.js")
+    ; ;------------------
+    ; (include-js "js/Three.min.js")
+    ; (include-js "js/3dMesh.js")
+    ; (include-js "js/JSONLoader.js")
+    ; (include-js "js/OrbitControls.js")
+    ; (include-js "js/OBJLoader.js")
+    ; (include-js "js/threedview.js")
 
     (include-js "/js/app.js")]))
 
