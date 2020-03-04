@@ -15,27 +15,25 @@
         (fn []
           (let [props (r/props (r/current-component))
                 {:keys [name]} props]
-            [:div
-             [:h3 "AAAA"]]))]
-            ; [:div.container-fluid {:style {:height "800px" :background-color "#ffa" :margin "10px"}}
-            ;  [:div.row {:style {:height "50px" :background-color "#eff"}}
-            ;   [:h4 {:style {:margin-left 20}}
-            ;    (str "Интерактивно представяне на готов проект за машинна бродерия")]]
-            ;  [:div.row
-            ;    [:div.col-lg-10 {:style {:height "750px" :background-color "#dff"}}
-            ;     [tab-pages-component]]
-            ;    [:div.col-lg-2 {:style {:height "750px" :background-color "#eff"}}
-            ;     [:input {:type "text" :id "layouted"}]
-            ;     [:button
-            ;       {:on-click
-            ;         (fn []
-            ;           (go
-            ;            (let [res (<! (http/get "/hello"))])))}
-            ;              ; (dispatch! {:type :layout :name
-            ;              ;             (-> js/document
-            ;              ;               (.getElementById "layouted")
-            ;              ;               (.-value))}))))}
-            ;       "Dispatch"]]]]))]
+            [:div.container-fluid {:style {:height "800px" :background-color "#ffa" :margin "10px"}}
+             [:div.row {:style {:height "50px" :background-color "#eff"}}
+              [:h4 {:style {:margin-left 20}}
+               (str "Интерактивно представяне на готов проект за машинна бродерия")]]
+             [:div.row
+               [:div.col-lg-10 {:style {:height "750px" :background-color "#dff"}}
+                [tab-pages-component]]
+               [:div.col-lg-2 {:style {:height "750px" :background-color "#eff"}}
+                [:input {:type "text" :id "layouted"}]
+                [:button
+                  {:on-click
+                    (fn []
+                      (go
+                       (let [res (<! (http/get "/hello"))])))}
+                         ; (dispatch! {:type :layout :name
+                         ;             (-> js/document
+                         ;               (.getElementById "layouted")
+                         ;               (.-value))}))))}
+                  "Dispatch"]]]]))]
 
 
 
