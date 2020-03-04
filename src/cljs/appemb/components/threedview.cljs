@@ -24,9 +24,9 @@
                       :height "80%"
                       :background-color "transparent"
                       :margin-left 0
-                      :margin-top 50}}
-                [:img {:id "imgRender" :src "AudreyBig.jpg"
-                       :style {:display "none"}}]]
+                      :margin-top 50}}]
+                ; [:img {:id "imgRender" :src "AudreyBig.jpg"
+                ;        :style {:display "none"}}]]
 
               [:button
                 {:on-click
