@@ -25,7 +25,7 @@
                       :background-color "transparent"
                       :margin-left 0
                       :margin-top 50}}
-                [:img {:id "imgRender" :src "AudreyBig.jpg"
+                [:img {:id "imgRender" :src "crp1.jpg"
                        :style {:display "none"}}]]
 
               [:button
