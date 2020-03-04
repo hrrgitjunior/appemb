@@ -1,6 +1,7 @@
 (ns appemb.components.tabpages
   (:require [reagent.core :as r]
-            [goog.dom]))
+            [goog.dom]
+            [appemb.components.threedview :as tdv]))
 
 (defn tab-page [children]
   children)
@@ -26,7 +27,7 @@
 
              [:div
               [tab-page (case @page-number
-                         1 [:div "PAGE 1"]
+                         1 [tdv/threedview-component]
                          2 [:div "PAGE 2"])]]]))]
 
 
