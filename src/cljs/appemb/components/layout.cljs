@@ -15,14 +15,12 @@
         (fn []
           (let [props (r/props (r/current-component))
                 {:keys [name]} props]
-            [:div.container-fluid {:style {:height "800px" :background-color "#ffa" :margin "10px"}}
-             [:div.row {:style {:height "50px" :background-color "#eff"}}
+            [:div.container-fluid {:style {:height "800px" :background-color "#fff" :margin "10px"}}
+             [:div.row {:style {:height "50px" :background-color "#fff"}}
               [:h4 {:style {:margin-left 20}}
                (str "Интерактивно представяне на готов проект за машинна бродерия")]]
              [:div.row
-               [:div.col-lg-10 {:style {:height "750px" :background-color "#dff"}}
-                [tab-pages-component]]
-               [:div.col-lg-2 {:style {:height "750px" :background-color "#eff"}}
+               [:div.col-lg-4 {:style {:height "750px" :background-color "#fff"}}
                 [:input {:type "text" :id "layouted"}]
                 [:button
                   {:on-click
@@ -33,7 +31,10 @@
                          ;             (-> js/document
                          ;               (.getElementById "layouted")
                          ;               (.-value))}))))}
-                  "Dispatch"]]]]))]
+                  "Dispatch"]]
+              [:div.col-lg-8 {:style {:height "750px" :background-color "#fff"}}
+               [tab-pages-component]]]]))]
+
 
 
 

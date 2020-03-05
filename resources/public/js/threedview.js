@@ -28,27 +28,32 @@ var height = positionInfo.height;
 var imgRender = document.getElementById('imgRender');
 
 scene = new THREE.Scene();
-camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 1000);
-camera.position.set(0, 0, 10);
+camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 1000);
+camera.position.set(0, -1, 10);
 
 light = new THREE.DirectionalLight(shapeColor);
 console.log(light.color)
-light.position.set( 0, 1.0, 1.5 ).normalize();
+light.position.set( 0.5, 0.8, 1.8 ).normalize();
 scene.add(light);
 
 //=========== materials =================
-var frontMaterial = new THREE.MeshPhongMaterial({ ambient: 0xffffff, map: THREE.ImageUtils.loadTexture(imgRender.src), side: THREE.FrontSide });
+var frontMaterial = new THREE.MeshPhongMaterial({ color: 0xeeffff, map: THREE.ImageUtils.loadTexture(imgRender.src),
+  side: THREE.FrontSide, emissive: 0x3a3a8a});
+//var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xcceeee, map: THREE.ImageUtils.loadTexture(imgRender.src), side: THREE.FrontSide, emissive: 0x0e0e0e});
+
 //frontMaterial.map = textureMap;
 frontMaterial.side = THREE.DoubleSide;
 //frontMaterial.alphaTest = 0.8;
-frontMaterial.opacity = 1.0; //opaque color ???
+frontMaterial.opacity = 1; //opaque color ???
 //frontMaterial.transparent = true;
 
 //var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.frontSide });
 var backMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.BackSide });
 
-var materials = [frontMaterial, backMaterial];
+var materials = [frontMaterial];
 var material = new THREE.MeshFaceMaterial(materials);
+//material = new THREE.MeshLambertMaterial({color: 0xcc0000, side: THREE.DoubleSide, emissive: 0x00cc00})
+
 // there is two materials. It used first material for now.
 //var material = THREE.SceneUtils.createMultiMaterialObject(geometry, materials);
 
@@ -63,7 +68,7 @@ for (var i = 0; i <= shirtObj.v.length - 1; i++)
                       new THREE.Vector3(shirtObj.v[i].x, shirtObj.v[i].y, shirtObj.v[i].z));
 
 var normal = new THREE.Vector3(0, 0, 1);
-var color = new THREE.Color(0xff00f0);
+var color = new THREE.Color(0x0000f0);
 
 for (var i = 0; i <= shirtObj.f_tri.length - 1; i++) {
 
@@ -117,8 +122,9 @@ for (var i = 0; i < faces.length; i++) {
     mesh.position.z = 0; //-2
     scene.add( mesh );
 
+
     renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setClearColor(0x0033ff, 1);
+    renderer.setClearColor(0x77aacc, 1);
   //  renderer.setClearColor(0x0033ff);
     renderer.setSize(width, height);
 

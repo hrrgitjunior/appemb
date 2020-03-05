@@ -15,7 +15,7 @@
         (fn []
           (let []
             (println "=== RENDER 3D ===")
-            [:div.row {:style {:height 800}}
+            [:div.row {:style {:height 800 :margin 10}}
               [:div
                     { :ref #(reset! dom-node %)
                       :id "Container_3d"
@@ -24,8 +24,8 @@
                       :height "80%"
                       :background-color "transparent"
                       :margin-left 0
-                      :margin-top 50}}
-                [:img {:id "imgRender" :src "crp1.jpg"
+                      :margin-top 5}}
+                [:img {:id "imgRender" :src "crp2.jpg"
                        :style {:display "none"}}]]
 
               [:button
