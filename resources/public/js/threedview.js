@@ -26,6 +26,7 @@ var positionInfo = container.getBoundingClientRect();
 var width = positionInfo.width;
 var height = positionInfo.height;
 var imgRender = document.getElementById('imgRender');
+var imgBackRender = document.getElementById('imgBackRender');
 
 scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 1000);
@@ -37,26 +38,15 @@ light.position.set( 0.5, 0.8, 1.8 ).normalize();
 scene.add(light);
 
 //=========== materials =================
-var frontMaterial = new THREE.MeshPhongMaterial({ color: 0xeeffff, map: THREE.ImageUtils.loadTexture(imgRender.src),
-  side: THREE.FrontSide, emissive: 0x3a3a8a});
-//var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xcceeee, map: THREE.ImageUtils.loadTexture(imgRender.src), side: THREE.FrontSide, emissive: 0x0e0e0e});
-
-//frontMaterial.map = textureMap;
-frontMaterial.side = THREE.DoubleSide;
-//frontMaterial.alphaTest = 0.8;
+var frontMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, map: THREE.ImageUtils.loadTexture(imgRender.src),
+  side: THREE.DoubleSide, emissive: 0x00003a});
 frontMaterial.opacity = 1; //opaque color ???
-//frontMaterial.transparent = true;
 
-//var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.frontSide });
-var backMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.BackSide });
+var backMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff,
+  side: THREE.DoubleSide, emissive: 0x00003a });
 
-var materials = [frontMaterial];
+var materials = [frontMaterial, backMaterial];
 var material = new THREE.MeshFaceMaterial(materials);
-//material = new THREE.MeshLambertMaterial({color: 0xcc0000, side: THREE.DoubleSide, emissive: 0x00cc00})
-
-// there is two materials. It used first material for now.
-//var material = THREE.SceneUtils.createMultiMaterialObject(geometry, materials);
-
 
 //============geometry=================
 var geometry = new THREE.Geometry();
@@ -103,7 +93,9 @@ for (var i = 0; i < faces.length; i++) {
     v2 = geometry.vertices[faces[i].b];
     v3 = geometry.vertices[faces[i].c];
     var face = geometry.faces[i];
-    face.materialIndex = 0; // It used first material for now.
+    if ((v1.z > 0) || (v2.z > 0) || (v3.z > 0))
+      face.materialIndex = 0; // It used first material for now.
+    else face.materialIndex = 1; // It used first material for now.
 
     geometry.faceVertexUvs[0].push([
         new THREE.Vector2((v1.x + offset.x) / range.x, (v1.y + offset.y) / range.y),
@@ -124,7 +116,7 @@ for (var i = 0; i < faces.length; i++) {
 
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setClearColor(0x77aacc, 1);
+    renderer.setClearColor(0xaaaaaa, 1);
   //  renderer.setClearColor(0x0033ff);
     renderer.setSize(width, height);
 

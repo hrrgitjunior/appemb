@@ -25,8 +25,12 @@
                       :background-color "transparent"
                       :margin-left 0
                       :margin-top 5}}
-                [:img {:id "imgRender" :src "crp2.jpg"
+                [:img {:id "imgRender" :src "crp1.jpg"
+                       :style {:display "none"}}]
+
+                [:img {:id "imgBackRender" :src "back.jpg"
                        :style {:display "none"}}]]
+
 
               [:button
                 {:on-click
