@@ -14,29 +14,20 @@
         render
         (fn []
           (let []
-            (println "=== RENDER 3D ===")
             [:div.row {:style {:height 800 :margin 10}}
               [:div
                     { :ref #(reset! dom-node %)
                       :id "Container_3d"
                       :style
-                     {:width "100%"
-                      :height "80%"
+                     {:width "70%"
+                      :height "50%"
                       :background-color "transparent"
-                      :margin-left 0
+                      :margin-left "auto"
+                      :margin-right "auto"
                       :margin-top 5}}
                 [:img {:id "imgRender" :src "crp1.jpg"
-                       :style {:display "none"}}]
+                       :style {:display "none"}}]]]))]
 
-                [:img {:id "imgBackRender" :src "back.jpg"
-                       :style {:display "none"}}]]
-
-
-              [:button
-                {:on-click
-                  (fn []
-                    (js/View3D))}
-                "Run 3D View"]]))]
     (r/create-class
       { :display-name "threedview-component"
         :component-did-mount did-mount

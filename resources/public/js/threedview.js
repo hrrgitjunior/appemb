@@ -4,7 +4,7 @@ var renderer;
 var mesh;
 var flNegativ = true;
 var flRightLeft = true;
-var shapeColor = 0xffeeff;
+var shapeColor = 0xffeedd;
 var light;
 var controls;
 
@@ -26,11 +26,10 @@ var positionInfo = container.getBoundingClientRect();
 var width = positionInfo.width;
 var height = positionInfo.height;
 var imgRender = document.getElementById('imgRender');
-var imgBackRender = document.getElementById('imgBackRender');
 
 scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 1000);
-camera.position.set(0, -1, 10);
+camera.position.set(3.5, 2.5, 10);
 
 light = new THREE.DirectionalLight(shapeColor);
 console.log(light.color)
@@ -39,11 +38,11 @@ scene.add(light);
 
 //=========== materials =================
 var frontMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, map: THREE.ImageUtils.loadTexture(imgRender.src),
-  side: THREE.DoubleSide, emissive: 0x00003a});
-frontMaterial.opacity = 1; //opaque color ???
+  side: THREE.DoubleSide, emissive: 0x001155});
+frontMaterial.opacity =1; //opaque color ???
 
 var backMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff,
-  side: THREE.DoubleSide, emissive: 0x00003a });
+  side: THREE.DoubleSide, emissive: 0x001155 });
 
 var materials = [frontMaterial, backMaterial];
 var material = new THREE.MeshFaceMaterial(materials);

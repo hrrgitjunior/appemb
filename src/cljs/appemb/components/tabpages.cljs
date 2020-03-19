@@ -18,11 +18,11 @@
               [:li {:class (when (= @page-number 1) "active")}
                [:a {:href "#"
                     :on-click (fn [] (reset! page-number 1))}
-                "Page1"]]
+                "3D Изглед"]]
               [:li {:class (when (= @page-number 2) "active")}
                [:a {:href "#"
                     :on-click (fn [] (reset! page-number 2))}
-                "Page2"]]]
+                "Симулатор на бодове"]]]
 
 
              [:div

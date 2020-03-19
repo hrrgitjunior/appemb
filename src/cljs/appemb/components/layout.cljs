@@ -5,7 +5,8 @@
             [goog.dom]
             [cljs-http.client :as http]
             [appemb.reducer :refer [dispatch!]]
-            [appemb.components.tabpages :refer [tab-pages-component]]))
+            [appemb.components.tabpages :refer [tab-pages-component]]
+            [appemb.components.imagetables :refer [imagetables-component]]))
 
 (defn layout-component []
   (let [did-mount
@@ -20,18 +21,11 @@
               [:h4 {:style {:margin-left 20}}
                (str "Интерактивно представяне на готов проект за машинна бродерия")]]
              [:div.row
-               [:div.col-lg-4 {:style {:height "750px" :background-color "#fff"}}
-                [:input {:type "text" :id "layouted"}]
-                [:button
-                  {:on-click
-                    (fn []
-                      (go
-                       (let [res (<! (http/get "/hello"))])))}
-                         ; (dispatch! {:type :layout :name
-                         ;             (-> js/document
-                         ;               (.getElementById "layouted")
-                         ;               (.-value))}))))}
-                  "Dispatch"]]
+              ;======= LEFT SIDE ========
+               [:div.col-lg-4 {:style {:height "750px" :padding-right 50 :background-color "#fff"}}
+                [imagetables-component]]
+
+              ;=======RIGTH SIDE =======
               [:div.col-lg-8 {:style {:height "750px" :background-color "#fff"}}
                [tab-pages-component]]]]))]
 
