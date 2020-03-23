@@ -113,6 +113,9 @@ for (var i = 0; i < faces.length; i++) {
     mesh.position.z = 0; //-2
     scene.add( mesh );
 
+    drawSphericalSkybox();
+    // Here add custom object
+
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(0xaaaaaa, 1);
@@ -127,6 +130,51 @@ for (var i = 0; i < faces.length; i++) {
 
     render();
 }
+
+
+// drawSphericalSkybox: function() {
+//   var uniforms = {
+//       texture: { type: 't', value: THREE.ImageUtils.loadTexture('skybox/2/skybox.jpg') }
+//   };
+//
+//   var skyMaterial = new THREE.ShaderMaterial( {
+//       uniforms: uniforms,
+//       vertexShader: document.getElementById('sky-vertex').textContent, fragmentShader: document.getElementById('sky-fragment').textContent
+//   });
+//
+//   // create Mesh with sphere geometry and add to the scene
+//
+//   var skyBox = new THREE.Mesh(new THREE.SphereGeometry(250, 60, 40), skyMaterial);
+//
+//   skyBox.scale.set(-1, 1, 1);
+//
+//   skyBox.eulerOrder = 'XZY';
+//
+//   skyBox.renderDepth = 500.0;
+//   this.scene.add(skyBox);
+// }
+
+function drawSphericalSkybox() {
+  var imgSky = document.getElementById('imgSky');
+
+  var skyMaterial = new THREE.MeshPhongMaterial({ color: 0xffff00, map: THREE.ImageUtils.loadTexture(imgSky.src),
+    side: THREE.DoubleSide});
+
+  // create Mesh with sphere geometry and add to the scene
+
+  var skyBoxMesh = new THREE.Mesh(new THREE.SphereGeometry(100, 32, 32), skyMaterial);
+
+  //skyBoxMesh.scale.set(1, 1, 1);
+
+  skyBoxMesh.position.set(0, 0, -10);
+
+  //skyBoxMesh.eulerOrder = 'XZY';
+
+  //skyBox.renderDepth = 500.0;
+  this.scene.add(skyBoxMesh);
+}
+
+
 
 
 function animate() {

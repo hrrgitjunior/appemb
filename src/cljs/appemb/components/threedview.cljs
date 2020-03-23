@@ -26,7 +26,11 @@
                       :margin-right "auto"
                       :margin-top 5}}
                 [:img {:id "imgRender" :src "crp1.jpg"
+                       :style {:display "none"}}]
+
+                [:img {:id "imgSky" :src "sky.jpg"
                        :style {:display "none"}}]]]))]
+
 
     (r/create-class
       { :display-name "threedview-component"
