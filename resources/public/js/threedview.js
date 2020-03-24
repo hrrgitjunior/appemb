@@ -28,8 +28,8 @@ var height = positionInfo.height;
 var imgRender = document.getElementById('imgRender');
 
 scene = new THREE.Scene();
-camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 1000);
-camera.position.set(3.5, 2.5, 10);
+camera = new THREE.PerspectiveCamera(14, window.innerWidth / window.innerHeight, 1, 5000);
+camera.position.set(3.5, -1, 10);
 
 light = new THREE.DirectionalLight(shapeColor);
 console.log(light.color)
@@ -110,11 +110,13 @@ for (var i = 0; i < faces.length; i++) {
   //===========================texture==========================
 
     mesh = new THREE.Mesh(geometry, material);
-    mesh.position.z = 0; //-2
+    mesh.position.z = 0;
     scene.add( mesh );
 
-    drawSphericalSkybox();
     // Here add custom object
+    //drawSphericalSkybox();
+    drawSimpleSkybox();
+
 
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -132,27 +134,6 @@ for (var i = 0; i < faces.length; i++) {
 }
 
 
-// drawSphericalSkybox: function() {
-//   var uniforms = {
-//       texture: { type: 't', value: THREE.ImageUtils.loadTexture('skybox/2/skybox.jpg') }
-//   };
-//
-//   var skyMaterial = new THREE.ShaderMaterial( {
-//       uniforms: uniforms,
-//       vertexShader: document.getElementById('sky-vertex').textContent, fragmentShader: document.getElementById('sky-fragment').textContent
-//   });
-//
-//   // create Mesh with sphere geometry and add to the scene
-//
-//   var skyBox = new THREE.Mesh(new THREE.SphereGeometry(250, 60, 40), skyMaterial);
-//
-//   skyBox.scale.set(-1, 1, 1);
-//
-//   skyBox.eulerOrder = 'XZY';
-//
-//   skyBox.renderDepth = 500.0;
-//   this.scene.add(skyBox);
-// }
 
 function drawSphericalSkybox() {
   var imgSky = document.getElementById('imgSky');
@@ -165,13 +146,62 @@ function drawSphericalSkybox() {
   var skyBoxMesh = new THREE.Mesh(new THREE.SphereGeometry(100, 32, 32), skyMaterial);
 
   //skyBoxMesh.scale.set(1, 1, 1);
-
+'media/imageSix.jpg'
   skyBoxMesh.position.set(0, 0, -10);
 
   //skyBoxMesh.eulerOrder = 'XZY';
 
   //skyBox.renderDepth = 500.0;
   this.scene.add(skyBoxMesh);
+}
+
+
+function drawSimpleSkybox() {
+  var path = 'skyboxes/Sorsele3/';
+  var sides = [ path + 'posx.jpg', path + 'negx.jpg', path + 'posy.jpg', path + 'negy.jpg', path + 'posz.jpg', path + 'negz.jpg' ];
+//
+//   // load images
+//   //var imgSky = document.getElementById('imgSky');
+//
+//   var scCube = THREE.ImageUtils.loadTextureCube(sides);
+//   scCube.format = THREE.RGBFormat;
+//
+//   // prepare skybox material (shader)
+//
+//   var skyShader = THREE.ShaderLib["cube"];
+//   skyShader.uniforms["tCube"].value = scCube;
+//
+//   var skyMaterial = new THREE.ShaderMaterial( {
+//     fragmentShader: skyShader.fragmentShader, vertexShader: skyShader.vertexShader,
+//     uniforms: skyShader.uniforms, depthWrite: false, side: THREE.BackSide
+//   });
+//
+//
+//   var skyBox = new THREE.Mesh(new THREE.CubeGeometry(500, 500, 500), skyMaterial);
+//
+//   scene.add(skyBox);
+//
+//   // creates cubes geometry in front of camera (assuming your camera position and rotation has not changed)
+//
+// =====================================================================================
+// var path = 'skyboxes/my/';
+// var sides = [ path + 'posx.jpg', path + 'negy.jpg', path + 'negx.jpg', path + 'posy.jpg', path + 'posz.jpg', path + 'negz.jpg' ];
+
+var geometry = new THREE.BoxGeometry(20,20,-20);
+// Adding the image as material to wrap
+
+var materialArray = [];
+materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( sides[0] ) }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( sides[1] ) }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( sides[2] ) }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( sides[3] ) }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( sides[4] ) }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( sides[5] ) }));
+var material = new THREE.MeshFaceMaterial(materialArray);
+
+var cube = new THREE.Mesh(geometry, material);
+
+scene.add(cube);
 }
 
 
@@ -182,51 +212,14 @@ console.log("THREE ANIMATE")
 requestAnimationFrame(animate);
 
 // required if controls.enableDamping or controls.autoRotate are set to true
+controls.minDistance = 10;
+controls.maxDistance = 10;
 controls.update();
 
 renderer.render(scene, camera);
 
 }
 
-
-/*function animate() {
-var flAnim = document.getElementById("animCBID").checked;
-
-
-//mesh.rotation.x += .005;
-if (mesh.rotation.y > 0.7) {
-    flRightLeft = false;
-}
-if (mesh.rotation.y < -0.7) {
-    flRightLeft = true;
-}
-if (flRightLeft){
-    mesh.rotation.y += .005;
-    mesh.rotation.x += .002;
-}
-else {
-    mesh.rotation.y -= .005;
-    mesh.rotation.x -= .002;
-}
-
-    if (mesh.position.z < -3)
-        flNegativ = false
-    if (mesh.position.z > -1.8)
-        flNegativ = true
-
-
-
-    if (flAnim) {
-        if (flNegativ)
-        mesh.position.z += -0.01;
-        else
-        mesh.position.z += 0.01
-
-    }
-    render();
-    //requestAnimationFrame(animate);
-
-}*/
 
 function render() {
 renderer.render( scene, camera );

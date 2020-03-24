@@ -28,7 +28,7 @@
                 [:img {:id "imgRender" :src "crp1.jpg"
                        :style {:display "none"}}]
 
-                [:img {:id "imgSky" :src "sky.jpg"
+                [:img {:id "imgSky" :src "sky_2.png"
                        :style {:display "none"}}]]]))]
 
 
