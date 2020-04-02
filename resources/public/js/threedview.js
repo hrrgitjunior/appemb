@@ -37,11 +37,11 @@ light.position.set( 0.5, 0.8, 1.8 ).normalize();
 scene.add(light);
 
 //=========== materials =================
-var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, map: THREE.ImageUtils.loadTexture(imgRender.src),
+var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, map: THREE.ImageUtils.loadTexture("crp3.jpg"),
   side: THREE.FrontSide});
 frontMaterial.opacity =1; //opaque color ???
 
-var backMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff,
+var backMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, map: THREE.ImageUtils.loadTexture("fabric_1.jpg"),
   side: THREE.FrontSide});
 
 var materials = [frontMaterial, backMaterial];
@@ -121,7 +121,7 @@ for (var i = 0; i < faces.length; i++) {
 
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setClearColor(0xdddddd, 1);
+    renderer.setClearColor(0xfefefe, 1);
   //  renderer.setClearColor(0x0033ff);
     renderer.setSize(width, height);
 
@@ -244,10 +244,10 @@ render();
 //==========================================
 function mesh2(){
   //=========== materials =================
-  var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xa0a0a0, side: THREE.BackSide, map: THREE.ImageUtils.loadTexture(imgRender.src)});
+  var frontMaterial = new THREE.MeshBasicMaterial({ color: 0xf0e0e0, side: THREE.BackSide, map: THREE.ImageUtils.loadTexture("crp3.jpg")});
   frontMaterial.opacity =1; //opaque color ???
 
-  var backMaterial = new THREE.MeshBasicMaterial({color: 0xa0a0a0, side: THREE.BackSide});
+  var backMaterial = new THREE.MeshBasicMaterial({color: 0xf0e0e0, side: THREE.BackSide, map: THREE.ImageUtils.loadTexture("fabric_1.jpg")});
 
   var materials = [frontMaterial, backMaterial];
   var material = new THREE.MeshFaceMaterial(materials);
